@@ -108,12 +108,5 @@ class ProductController extends Controller
         ];
         return response()->json($data);
     }
-    public function attach(Request $request, Product $product){
-        $product->category()->attach($request->category_id);
-        $data = [
-            'message' => 'category adjuntado correctamente',
-            'product' => $product
-        ];
-        return response()->json($data);
-    }
+
 }

@@ -19,5 +19,17 @@ use App\Http\Controllers\ProductController;
     return $request->user();
 }); */
 
-Route::resource('/category', CategoryController::class);
-Route::resource('/products', ProductController::class);
+/* Route::resource('/category', CategoryController::class); */
+/* Route::resource('/products', ProductController::class); */
+
+
+/*** Categorias ****/
+Route::get('/category', CategoryController::class);
+Route::post('/category', CategoryController::class);
+/*** Productos ****/
+Route::get('/products', [ProductController::class, 'index']);
+Route::post('/products', [ProductController::class, 'store']);
+Route::put('/products', [ProductController::class, 'update']);
+Route::delete('/products', [ProductController::class, 'destroy']);
+
+
