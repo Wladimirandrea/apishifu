@@ -20,7 +20,10 @@ class CategoryController extends Controller
 
     public function store(Request $request)
     {
-
+        $request->validate([
+            'name' => 'required|min:3',
+            'category_id'=> 'required|numeric',
+        ]);
         $categories = new Category;
         $categories->name = $request->name;
         $categories->category_id = $request->category_id;
