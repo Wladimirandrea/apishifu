@@ -32,11 +32,19 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required|min:3',
+            'price_cost'=> 'required|numeric',
+            'price_sell'=> 'required|numeric',
+            'stock'=> 'required|numeric',
+            'category_id'=> 'required|numeric',
+        ]);
+
         $products = new Product;
-        $products->nombre = $request->nombre;
-        $products->precio_mayorista = $request->precio_mayorista;
-        $products->precio_venta = $request->precio_venta;
-        $products->cantidad = $request->cantidad;
+        $products->name = $request->name;
+        $products->price_cost = $request->price_cost;
+        $products->price_sell = $request->price_sell;
+        $products->stock = $request->stock;
         $products->category_id = $request->category_id;
 
 
@@ -80,11 +88,18 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        $product->nombre = $request->nombre;
-        $product->precio_mayorista = $request->precio_mayorista;
-        $product->precio_venta = $request->precio_venta;
-        $product->cantidad = $request->cantidad;
-        $product->category_id = $request->category_id;
+        $request->validate([
+            'name' => 'required|min:3',
+            'price_cost'=> 'required|numeric',
+            'price_sell'=> 'required|numeric',
+            'stock'=> 'required|numeric',
+            'category_id'=> 'required|numeric',
+        ]);
+        $products->name = $request->name;
+        $products->price_cost = $request->price_cost;
+        $products->price_sell = $request->price_sell;
+        $products->stock = $request->stock;
+        $products->category_id = $request->category_id;
         $product->save();
         $data = [
             'message' => 'producto actualizado correctamente',
@@ -102,11 +117,7 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         $product->delete();
-        $data = [
-            'message' => 'producto borrado correctamente',
-            'product' => $product
-        ];
-        return response()->json($data);
+
     }
 
 }

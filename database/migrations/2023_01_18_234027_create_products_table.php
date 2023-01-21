@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nombre');
-            $table->string('precio_mayorista');
-            $table->string('precio_venta');
-            $table->integer('cantidad');
+            $table->string('name');
+            $table->string('price_cost');
+            $table->string('price_sell');
+            $table->integer('stock');
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
 
